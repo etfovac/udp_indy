@@ -2,8 +2,8 @@ object ClientForm: TClientForm
   Left = 0
   Top = 0
   Caption = 'Client'
-  ClientHeight = 441
-  ClientWidth = 624
+  ClientHeight = 440
+  ClientWidth = 620
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -13,25 +13,25 @@ object ClientForm: TClientForm
   OnCreate = FormCreate
   TextHeight = 15
   object Memo1: TMemo
-    Left = 168
-    Top = 216
-    Width = 185
-    Height = 25
+    Left = 112
+    Top = 112
+    Width = 489
+    Height = 89
     Lines.Strings = (
       'Memo1')
     TabOrder = 0
+    OnChange = Memo1Change
   end
   object Status: TEdit
-    Left = 168
-    Top = 120
+    Left = 8
+    Top = 409
     Width = 185
     Height = 23
     TabOrder = 1
-    OnChange = StatusChange
   end
   object Enable: TCheckBox
-    Left = 168
-    Top = 168
+    Left = 8
+    Top = 8
     Width = 97
     Height = 17
     Caption = 'Enable'
@@ -39,13 +39,29 @@ object ClientForm: TClientForm
     OnClick = EnableClick
   end
   object Address: TEdit
-    Left = 168
-    Top = 87
+    Left = 152
+    Top = 23
     Width = 185
     Height = 23
     TabOrder = 3
     Text = '127.0.0.1'
     OnChange = AddressChange
+  end
+  object Port: TEdit
+    Left = 152
+    Top = 52
+    Width = 185
+    Height = 23
+    TabOrder = 4
+    OnChange = PortChange
+  end
+  object Period: TEdit
+    Left = 8
+    Top = 220
+    Width = 185
+    Height = 23
+    TabOrder = 5
+    OnChange = PeriodChange
   end
   object IdUDPClient1: TIdUDPClient
     Host = '192.168.0.11'

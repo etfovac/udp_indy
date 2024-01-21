@@ -22,11 +22,15 @@ __published:	// IDE-managed Components
 	TEdit *Status;
 	TCheckBox *Enable;
 	TEdit *Address;
+	TEdit *Port;
+	TEdit *Period;
 	void __fastcall ClientTimerTimer(TObject *Sender);
 	void __fastcall EnableClick(TObject *Sender);
-	void __fastcall StatusChange(TObject *Sender);
 	void __fastcall AddressChange(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall Memo1Change(TObject *Sender);
+	void __fastcall PeriodChange(TObject *Sender);
+	void __fastcall PortChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TClientForm(TComponent* Owner);

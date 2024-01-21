@@ -29,20 +29,27 @@ void __fastcall TClientForm::EnableClick(TObject *Sender)
 {
 	IdUDPClient1->Active = (Enable->State == cbChecked);
 	if(IdUDPClient1->Active){
-		Status->Text = IdUDPClient1->Port;
+		Status->Text = "Started";
 		Memo1->Color = clWindow;
 	}
 	else{
 	   Status->Text = "Stopped";
 	   Memo1->Color = clSilver;
-       Memo1->Clear();
+	   //Memo1->Clear();
 	}
 }
+//---------------------------------------------------------------------------
 
-void __fastcall TClientForm::StatusChange(TObject *Sender)
+
+void __fastcall TClientForm::FormCreate(TObject *Sender)
 {
-     IdUDPClient1->Active = False;
-	 Status->Text = IdUDPClient1->Port;
+	IdUDPClient1->Active = False;
+	IdUDPClient1->Host = "127.0.0.1";
+	IdUDPClient1->Port = 50000;
+	ClientTimer->Interval = 1000;
+	//ClientTimer->Enabled = True;
+	Port->Text = IdUDPClient1->Port;
+	Period->Text = ClientTimer->Interval;
 }
 //---------------------------------------------------------------------------
 
@@ -53,10 +60,24 @@ void __fastcall TClientForm::AddressChange(TObject *Sender)
 }
 //---------------------------------------------------------------------------
 
-void __fastcall TClientForm::FormCreate(TObject *Sender)
+void __fastcall TClientForm::Memo1Change(TObject *Sender)
 {
-	IdUDPClient1->Active = False;
-	IdUDPClient1->Host = Address->Text;
+	if(Memo1->Lines->Count < 1){
+		Memo1->Lines->Add("");
+	}
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TClientForm::PeriodChange(TObject *Sender)
+{
+	ClientTimer->Interval = Period->Text.ToInt();
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TClientForm::PortChange(TObject *Sender)
+{
+	 IdUDPClient1->Active = False;
+	 Port->Text = IdUDPClient1->Port;
 }
 //---------------------------------------------------------------------------
 
