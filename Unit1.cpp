@@ -19,9 +19,14 @@ void __fastcall TClientForm::ClientTimerTimer(TObject *Sender)
 	if(IdUDPClient1->Active){
 
 	   IdUDPClient1->SendBuffer(IdUDPClient1->Host, IdUDPClient1->Port, ToBytes(Memo1->Text));
+	   if(Broadcast->State == cbChecked){
+		IdUDPClient1->Broadcast(ToBytes(Memo1->Text),  BPort->Text.ToInt());
+        BroadcastIndicator->Checked = IdUDPClient1->BroadcastEnabled;
+	   }
+
 	}
 	else{
-
+		Enable->State = cbUnchecked;
 	}
 }
 
@@ -29,11 +34,11 @@ void __fastcall TClientForm::EnableClick(TObject *Sender)
 {
 	IdUDPClient1->Active = (Enable->State == cbChecked);
 	if(IdUDPClient1->Active){
-		Status->Text = "Started";
+		StatusBar1->SimpleText = "Started";
 		Memo1->Color = clWindow;
 	}
 	else{
-	   Status->Text = "Stopped";
+	   StatusBar1->SimpleText = "Stopped";
 	   Memo1->Color = clSilver;
 	   //Memo1->Clear();
 	}
@@ -45,18 +50,33 @@ void __fastcall TClientForm::FormCreate(TObject *Sender)
 {
 	IdUDPClient1->Active = False;
 	IdUDPClient1->Host = "127.0.0.1";
+	//IdUDPClient1->BoundIP = "127.0.0.1";
 	IdUDPClient1->Port = 50000;
+	//IdUDPClient1->BoundPort = 50000;
+	IdUDPClient1->BufferSize = 10*1500;
 	ClientTimer->Interval = 1000;
 	//ClientTimer->Enabled = True;
+	Address->Text = IdUDPClient1->Host;
 	Port->Text = IdUDPClient1->Port;
+    //https://en.delphipraxis.net/topic/6941-idudpclient-send-packet-to-broadcast-address-how-to-avoid-getting-the-data-back/
+	//BoundAddress->Text = IdUDPClient1->BoundIP;
+	//BoundPort->Text = IdUDPClient1->BoundPort;
+	BPort->Text = IdUDPClient1->Port;
 	Period->Text = ClientTimer->Interval;
+	BufferSize->Text = IdUDPClient1->BufferSize;
+	Memo1->TextHint = "Periodical Test Message";
+	Memo1->Text = "Test Message";
 }
 //---------------------------------------------------------------------------
 
 void __fastcall TClientForm::AddressChange(TObject *Sender)
 {
 	IdUDPClient1->Active = False;
+	Address->Color = clHighlight;
+    // add check for valid addr
 	IdUDPClient1->Host = Address->Text;
+	Address->Color = clWindow;
+	Address->Text = IdUDPClient1->Host;
 }
 //---------------------------------------------------------------------------
 
@@ -77,7 +97,24 @@ void __fastcall TClientForm::PeriodChange(TObject *Sender)
 void __fastcall TClientForm::PortChange(TObject *Sender)
 {
 	 IdUDPClient1->Active = False;
+	 Port->Color = clHighlight;
+	 IdUDPClient1->Port = Port->Text.ToInt();
 	 Port->Text = IdUDPClient1->Port;
+	 Port->Color = clWindow;
 }
 //---------------------------------------------------------------------------
+
+void __fastcall TClientForm::BroadcastClick(TObject *Sender)
+{
+	BroadcastIndicator->Checked = False;
+}
+//---------------------------------------------------------------------------
+
+void __fastcall TClientForm::BufferSizeChange(TObject *Sender)
+{
+	IdUDPClient1->BufferSize = BufferSize->Text.ToInt();
+}
+//---------------------------------------------------------------------------
+
+
 

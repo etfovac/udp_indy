@@ -2,8 +2,8 @@ object Server: TServer
   Left = 0
   Top = 0
   Caption = 'Server'
-  ClientHeight = 442
-  ClientWidth = 771
+  ClientHeight = 648
+  ClientWidth = 751
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -11,6 +11,9 @@ object Server: TServer
   Font.Name = 'Segoe UI'
   Font.Style = []
   OnCreate = FormCreate
+  DesignSize = (
+    751
+    648)
   TextHeight = 15
   object Enable: TCheckBox
     Left = 0
@@ -21,40 +24,60 @@ object Server: TServer
     TabOrder = 0
     OnClick = EnableClick
   end
-  object Status: TEdit
-    Left = 0
-    Top = 411
-    Width = 320
-    Height = 23
-    TabOrder = 1
-  end
   object Memo1: TMemo
     Left = 0
-    Top = 64
-    Width = 763
-    Height = 341
+    Top = 37
+    Width = 751
+    Height = 580
+    Anchors = [akLeft, akTop, akRight, akBottom]
     Lines.Strings = (
       'Memo1')
-    TabOrder = 2
+    TabOrder = 1
+    ExplicitWidth = 767
+    ExplicitHeight = 370
   end
   object IPs: TEdit
-    Left = 232
-    Top = 18
-    Width = 169
+    Left = 152
+    Top = 8
+    Width = 120
+    Height = 23
+    TabOrder = 2
+    TextHint = 'Address'
+    OnChange = IPsChange
+  end
+  object DefaultPort: TEdit
+    Left = 278
+    Top = 8
+    Width = 120
     Height = 23
     TabOrder = 3
+    TextHint = 'Default Port'
+    OnChange = DefaultPortChange
   end
-  object Ports: TEdit
-    Left = 424
-    Top = 18
-    Width = 169
+  object BufferSize: TEdit
+    Left = 404
+    Top = 8
+    Width = 120
     Height = 23
     TabOrder = 4
+    TextHint = 'BufferSize'
+    OnChange = BufferSizeChange
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 618
+    Width = 751
+    Height = 30
+    Panels = <>
+    SimplePanel = True
+    SimpleText = 'simple text'
+    ExplicitTop = 408
+    ExplicitWidth = 767
   end
   object IdUDPServer1: TIdUDPServer
     Bindings = <>
     DefaultPort = 0
-    Left = 64
-    Top = 8
+    Left = 256
+    Top = 384
   end
 end

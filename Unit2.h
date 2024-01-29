@@ -16,21 +16,26 @@
 #include <IdSocketHandle.hpp>
 #include <System.DateUtils.hpp>
 #include <System.SysUtils.hpp>
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TServer : public TForm
 {
 __published:	// IDE-managed Components
 	TIdUDPServer *IdUDPServer1;
 	TCheckBox *Enable;
-	TEdit *Status;
 	TMemo *Memo1;
 	TEdit *IPs;
-	TEdit *Ports;
+	TEdit *DefaultPort;
+	TEdit *BufferSize;
+	TStatusBar *StatusBar1;
 	void __fastcall EnableClick(TObject *Sender);
 	void __fastcall IdUDPServer1UDPRead(TIdUDPListenerThread *AThread, const TIdBytes AData,
           TIdSocketHandle *ABinding);
 	void __fastcall IdUDPServer1Status(TObject *ASender, const TIdStatus AStatus, const UnicodeString AStatusText);
 	void __fastcall FormCreate(TObject *Sender);
+	void __fastcall DefaultPortChange(TObject *Sender);
+	void __fastcall BufferSizeChange(TObject *Sender);
+	void __fastcall IPsChange(TObject *Sender);
 
 private:	// User declarations
     TDateTime timestamp_ms;

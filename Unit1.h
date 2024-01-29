@@ -12,6 +12,8 @@
 #include <IdUDPBase.hpp>
 #include <IdUDPClient.hpp>
 #include <Vcl.ExtCtrls.hpp>
+#include <Vcl.Mask.hpp>
+#include <Vcl.ComCtrls.hpp>
 //---------------------------------------------------------------------------
 class TClientForm : public TForm
 {
@@ -19,11 +21,18 @@ __published:	// IDE-managed Components
 	TIdUDPClient *IdUDPClient1;
 	TTimer *ClientTimer;
 	TMemo *Memo1;
-	TEdit *Status;
 	TCheckBox *Enable;
 	TEdit *Address;
 	TEdit *Port;
 	TEdit *Period;
+	TCheckBox *Broadcast;
+	TEdit *BufferSize;
+	TRadioButton *BroadcastIndicator;
+	TGroupBox *BroadcastProperties;
+	TEdit *BPort;
+	TGroupBox *ServerProperties;
+	TStatusBar *StatusBar1;
+	TGroupBox *RepeatProperties;
 	void __fastcall ClientTimerTimer(TObject *Sender);
 	void __fastcall EnableClick(TObject *Sender);
 	void __fastcall AddressChange(TObject *Sender);
@@ -31,6 +40,8 @@ __published:	// IDE-managed Components
 	void __fastcall Memo1Change(TObject *Sender);
 	void __fastcall PeriodChange(TObject *Sender);
 	void __fastcall PortChange(TObject *Sender);
+	void __fastcall BroadcastClick(TObject *Sender);
+	void __fastcall BufferSizeChange(TObject *Sender);
 private:	// User declarations
 public:		// User declarations
 	__fastcall TClientForm(TComponent* Owner);
