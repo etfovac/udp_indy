@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "Unit1.h"
+#include "UDP_Client_UI.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -14,14 +14,15 @@ __fastcall TClientForm::TClientForm(TComponent* Owner)
 {
 }
 
-void __fastcall TClientForm::ClientTimerTimer(TObject *Sender)
+void __fastcall TClientForm::ClientTimer_Timeout(TObject *Sender)
 {
 	if(IdUDPClient1->Active){
 
-	   IdUDPClient1->SendBuffer(IdUDPClient1->Host, IdUDPClient1->Port, ToBytes(Memo1->Text));
-	   if(Broadcast->State == cbChecked){
+
+	   if(IdUDPClient1->BroadcastEnabled){
 		IdUDPClient1->Broadcast(ToBytes(Memo1->Text),  BPort->Text.ToInt());
-        BroadcastIndicator->Checked = IdUDPClient1->BroadcastEnabled;
+	   } else {
+		  IdUDPClient1->SendBuffer(IdUDPClient1->Host, IdUDPClient1->Port, ToBytes(Memo1->Text));
 	   }
 
 	}
@@ -51,6 +52,7 @@ void __fastcall TClientForm::FormCreate(TObject *Sender)
 	IdUDPClient1->Active = False;
 	IdUDPClient1->Host = "127.0.0.1";
 	//IdUDPClient1->BoundIP = "127.0.0.1";
+	IdUDPClient1->BroadcastEnabled = false;
 	IdUDPClient1->Port = 50000;
 	//IdUDPClient1->BoundPort = 50000;
 	IdUDPClient1->BufferSize = 10*1500;
@@ -58,7 +60,7 @@ void __fastcall TClientForm::FormCreate(TObject *Sender)
 	//ClientTimer->Enabled = True;
 	Address->Text = IdUDPClient1->Host;
 	Port->Text = IdUDPClient1->Port;
-    //https://en.delphipraxis.net/topic/6941-idudpclient-send-packet-to-broadcast-address-how-to-avoid-getting-the-data-back/
+	//https://en.delphipraxis.net/topic/6941-idudpclient-send-packet-to-broadcast-address-how-to-avoid-getting-the-data-back/
 	//BoundAddress->Text = IdUDPClient1->BoundIP;
 	//BoundPort->Text = IdUDPClient1->BoundPort;
 	BPort->Text = IdUDPClient1->Port;
@@ -66,6 +68,8 @@ void __fastcall TClientForm::FormCreate(TObject *Sender)
 	BufferSize->Text = IdUDPClient1->BufferSize;
 	Memo1->TextHint = "Periodical Test Message";
 	Memo1->Text = "Test Message";
+	Memo1->Color = clSilver;
+	StatusBar1->SimpleText = "Initialized";
 }
 //---------------------------------------------------------------------------
 
@@ -73,7 +77,7 @@ void __fastcall TClientForm::AddressChange(TObject *Sender)
 {
 	IdUDPClient1->Active = False;
 	Address->Color = clHighlight;
-    // add check for valid addr
+	// add check for valid addr
 	IdUDPClient1->Host = Address->Text;
 	Address->Color = clWindow;
 	Address->Text = IdUDPClient1->Host;
@@ -106,7 +110,14 @@ void __fastcall TClientForm::PortChange(TObject *Sender)
 
 void __fastcall TClientForm::BroadcastClick(TObject *Sender)
 {
-	BroadcastIndicator->Checked = False;
+	IdUDPClient1->Active = False;
+	Address->Color = clHighlight;
+	// add check for valid addr
+	//Address->Text = "255.255.255.255";
+	IdUDPClient1->Host = Address->Text;
+	Address->Color = clWindow;
+	Address->Text = IdUDPClient1->Host;
+    IdUDPClient1->BroadcastEnabled = Broadcast->Checked;
 }
 //---------------------------------------------------------------------------
 
@@ -115,6 +126,4 @@ void __fastcall TClientForm::BufferSizeChange(TObject *Sender)
 	IdUDPClient1->BufferSize = BufferSize->Text.ToInt();
 }
 //---------------------------------------------------------------------------
-
-
 

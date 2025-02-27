@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef Unit1H
-#define Unit1H
+#ifndef UDP_Client_UIH
+#define UDP_Client_UIH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -14,6 +14,7 @@
 #include <Vcl.ExtCtrls.hpp>
 #include <Vcl.Mask.hpp>
 #include <Vcl.ComCtrls.hpp>
+#include <Vcl.Menus.hpp>
 //---------------------------------------------------------------------------
 class TClientForm : public TForm
 {
@@ -27,13 +28,16 @@ __published:	// IDE-managed Components
 	TEdit *Period;
 	TCheckBox *Broadcast;
 	TEdit *BufferSize;
-	TRadioButton *BroadcastIndicator;
 	TGroupBox *BroadcastProperties;
 	TEdit *BPort;
 	TGroupBox *ServerProperties;
 	TStatusBar *StatusBar1;
 	TGroupBox *RepeatProperties;
-	void __fastcall ClientTimerTimer(TObject *Sender);
+	TGroupBox *BufferProperties;
+	TLabel *Label1;
+	TLabel *Label2;
+	TGroupBox *Controls;
+	void __fastcall ClientTimer_Timeout(TObject *Sender);
 	void __fastcall EnableClick(TObject *Sender);
 	void __fastcall AddressChange(TObject *Sender);
 	void __fastcall FormCreate(TObject *Sender);

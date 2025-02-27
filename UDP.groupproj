@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{9E887E98-71BA-4F54-861E-A85953547571}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="Project1.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\..\GitHub\UDP\ServerUDP.cbproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="..\..\..\GitHub\UDP\ClientUDP.cbproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="Project1">
+        <MSBuild Projects="Project1.cbproj"/>
+    </Target>
+    <Target Name="Project1:Clean">
+        <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="Project1:Make">
+        <MSBuild Projects="Project1.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ServerUDP">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj"/>
+    </Target>
+    <Target Name="ServerUDP:Clean">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ServerUDP:Make">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="ClientUDP">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj"/>
+    </Target>
+    <Target Name="ClientUDP:Clean">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ClientUDP:Make">
+        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="Project1;ServerUDP;ClientUDP"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="Project1:Clean;ServerUDP:Clean;ClientUDP:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="Project1:Make;ServerUDP:Make;ClientUDP:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

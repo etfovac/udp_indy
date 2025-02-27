@@ -3,7 +3,7 @@
 #include <vcl.h>
 #pragma hdrstop
 
-#include "Unit2.h"
+#include "UDP_Server_UI.h"
 //---------------------------------------------------------------------------
 #pragma package(smart_init)
 #pragma resource "*.dfm"
@@ -83,7 +83,8 @@ void __fastcall TServer::FormCreate(TObject *Sender)
 	IdUDPServer1->DefaultPort = 50000;
 	IdUDPServer1->Bindings->Clear();
 	TIdSocketHandle *pBinding = IdUDPServer1->Bindings->Add();
-	pBinding->IP = "127.0.0.1";
+	//pBinding->IP = "127.0.0.1";  // Listen on loopback
+	pBinding->IP = "0.0.0.0";   // Listen on all interfaces
 	pBinding->Port = IdUDPServer1->DefaultPort;
 
 	IPs->Text = pBinding->IP;
@@ -91,6 +92,7 @@ void __fastcall TServer::FormCreate(TObject *Sender)
 	BufferSize->Text = IdUDPServer1->BufferSize;
 	StatusBar1->SimplePanel = True;
 	StatusBar1->SimpleText = "Initialized";
+    Memo1->Color = clSilver;
 }
 //---------------------------------------------------------------------------
 

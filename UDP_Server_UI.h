@@ -1,7 +1,7 @@
 //---------------------------------------------------------------------------
 
-#ifndef Unit2H
-#define Unit2H
+#ifndef UDP_Server_UIH
+#define UDP_Server_UIH
 //---------------------------------------------------------------------------
 #include <System.Classes.hpp>
 #include <Vcl.Controls.hpp>
@@ -28,6 +28,7 @@ __published:	// IDE-managed Components
 	TEdit *DefaultPort;
 	TEdit *BufferSize;
 	TStatusBar *StatusBar1;
+	TGroupBox *Controls;
 	void __fastcall EnableClick(TObject *Sender);
 	void __fastcall IdUDPServer1UDPRead(TIdUDPListenerThread *AThread, const TIdBytes AData,
           TIdSocketHandle *ABinding);
