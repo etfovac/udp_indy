@@ -2,9 +2,11 @@ object ClientForm: TClientForm
   Left = 0
   Top = 0
   Caption = 'UDP Client'
-  ClientHeight = 601
-  ClientWidth = 344
+  ClientHeight = 605
+  ClientWidth = 346
   Color = clBtnFace
+  Constraints.MinHeight = 600
+  Constraints.MinWidth = 345
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -13,15 +15,47 @@ object ClientForm: TClientForm
   Visible = True
   OnCreate = FormCreate
   TextHeight = 15
+  object Memo1: TMemo
+    Left = 0
+    Top = 160
+    Width = 346
+    Height = 426
+    Align = alClient
+    Constraints.MinHeight = 390
+    Constraints.MinWidth = 340
+    Lines.Strings = (
+      'Memo1')
+    ScrollBars = ssBoth
+    TabOrder = 0
+    OnChange = Memo1Change
+    ExplicitLeft = 3
+    ExplicitTop = 169
+    ExplicitWidth = 340
+    ExplicitHeight = 415
+  end
+  object StatusBar1: TStatusBar
+    Left = 0
+    Top = 586
+    Width = 346
+    Height = 19
+    Panels = <>
+    SimplePanel = True
+    ExplicitLeft = -2
+    ExplicitTop = 593
+    ExplicitWidth = 340
+  end
   object Controls: TGroupBox
-    AlignWithMargins = True
-    Left = 3
-    Top = 3
-    Width = 338
-    Height = 158
+    Left = 0
+    Top = 0
+    Width = 346
+    Height = 160
     Align = alTop
     Caption = 'Controls'
+    Constraints.MinHeight = 160
     TabOrder = 2
+    ExplicitLeft = 8
+    ExplicitTop = 8
+    ExplicitWidth = 340
     object Enable: TCheckBox
       Left = 9
       Top = 23
@@ -91,7 +125,7 @@ object ClientForm: TClientForm
       Height = 50
       Caption = 'Repeat Properties'
       TabOrder = 3
-      object Label2: TLabel
+      object ms: TLabel
         Left = 111
         Top = 24
         Width = 16
@@ -134,28 +168,6 @@ object ClientForm: TClientForm
         OnChange = PortChange
       end
     end
-  end
-  object Memo1: TMemo
-    AlignWithMargins = True
-    Left = 3
-    Top = 163
-    Width = 338
-    Height = 416
-    Align = alBottom
-    Lines.Strings = (
-      'Memo1')
-    TabOrder = 0
-    OnChange = Memo1Change
-  end
-  object StatusBar1: TStatusBar
-    Left = 0
-    Top = 582
-    Width = 344
-    Height = 19
-    Panels = <>
-    SimplePanel = True
-    ExplicitTop = 587
-    ExplicitWidth = 550
   end
   object IdUDPClient1: TIdUDPClient
     Host = '192.168.0.11'

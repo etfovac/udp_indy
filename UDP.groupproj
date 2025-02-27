@@ -3,13 +3,13 @@
         <ProjectGuid>{9E887E98-71BA-4F54-861E-A85953547571}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="Project1.cbproj">
+        <Projects Include="Broadcast_Test.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\..\GitHub\UDP\ServerUDP.cbproj">
+        <Projects Include="UDP_Client.cbproj">
             <Dependencies/>
         </Projects>
-        <Projects Include="..\..\..\GitHub\UDP\ClientUDP.cbproj">
+        <Projects Include="UDP_Server.cbproj">
             <Dependencies/>
         </Projects>
     </ItemGroup>
@@ -20,41 +20,41 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="Project1">
-        <MSBuild Projects="Project1.cbproj"/>
+    <Target Name="Broadcast_Test">
+        <MSBuild Projects="Broadcast_Test.cbproj"/>
     </Target>
-    <Target Name="Project1:Clean">
-        <MSBuild Projects="Project1.cbproj" Targets="Clean"/>
+    <Target Name="Broadcast_Test:Clean">
+        <MSBuild Projects="Broadcast_Test.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="Project1:Make">
-        <MSBuild Projects="Project1.cbproj" Targets="Make"/>
+    <Target Name="Broadcast_Test:Make">
+        <MSBuild Projects="Broadcast_Test.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ServerUDP">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj"/>
+    <Target Name="UDP_Client">
+        <MSBuild Projects="UDP_Client.cbproj"/>
     </Target>
-    <Target Name="ServerUDP:Clean">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj" Targets="Clean"/>
+    <Target Name="UDP_Client:Clean">
+        <MSBuild Projects="UDP_Client.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ServerUDP:Make">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ServerUDP.cbproj" Targets="Make"/>
+    <Target Name="UDP_Client:Make">
+        <MSBuild Projects="UDP_Client.cbproj" Targets="Make"/>
     </Target>
-    <Target Name="ClientUDP">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj"/>
+    <Target Name="UDP_Server">
+        <MSBuild Projects="UDP_Server.cbproj"/>
     </Target>
-    <Target Name="ClientUDP:Clean">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj" Targets="Clean"/>
+    <Target Name="UDP_Server:Clean">
+        <MSBuild Projects="UDP_Server.cbproj" Targets="Clean"/>
     </Target>
-    <Target Name="ClientUDP:Make">
-        <MSBuild Projects="..\..\..\GitHub\UDP\ClientUDP.cbproj" Targets="Make"/>
+    <Target Name="UDP_Server:Make">
+        <MSBuild Projects="UDP_Server.cbproj" Targets="Make"/>
     </Target>
     <Target Name="Build">
-        <CallTarget Targets="Project1;ServerUDP;ClientUDP"/>
+        <CallTarget Targets="Broadcast_Test;UDP_Client;UDP_Server"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="Project1:Clean;ServerUDP:Clean;ClientUDP:Clean"/>
+        <CallTarget Targets="Broadcast_Test:Clean;UDP_Client:Clean;UDP_Server:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="Project1:Make;ServerUDP:Make;ClientUDP:Make"/>
+        <CallTarget Targets="Broadcast_Test:Make;UDP_Client:Make;UDP_Server:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

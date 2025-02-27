@@ -1,46 +1,62 @@
 ﻿[Address]
-Coordinates=281,146,55,51
+Coordinates=281,146,62,58
 
 [Memo1]
-Coordinates=10,78,53,51
+Coordinates=10,78,64,58
+Visible=True
 
 [StatusBar1]
-Coordinates=272,10,68,51
+Coordinates=272,10,78,58
 
 [RepeatProperties]
-Coordinates=72,146,99,51
+Coordinates=72,146,115,58
 
 [BPort]
-Coordinates=208,78,42,51
+Coordinates=208,78,47,58
 
 [BufferSize]
-Coordinates=197,146,65,51
+Coordinates=197,146,74,58
 
 [Port]
-Coordinates=265,78,40,51
+Coordinates=265,78,40,58
 
 [IdUDPClient1]
-Coordinates=496,1,79,33
+Coordinates=496,1,92,36
 
 [Period]
-Coordinates=10,146,46,51
+Coordinates=10,146,52,58
 
 [ServerProperties]
-Coordinates=10,10,97,51
+Coordinates=10,10,111,58
 
 [ClientTimer]
-Coordinates=496,111,70,33
+Coordinates=496,111,81,36
 
 [BroadcastProperties]
-Coordinates=131,10,115,51
+Coordinates=131,10,131,58
 
 [Enable]
-Coordinates=84,78,95,51
+Coordinates=84,78,114,58
 
 [Broadcast]
-Coordinates=315,78,95,51
+Coordinates=315,78,114,58
 Visible=True
 
 []
-Coordinates=353,146,108,33
+Coordinates=467,56,91,36
+
+[Label1]
+Coordinates=0,0,53,58
+
+[BufferProperties]
+Coordinates=72,77,108,58
+
+[ms]
+Coordinates=72,1,49,58
+
+[(TMenuItem)]
+Coordinates=448,242,88,36
+
+[Controls]
+Coordinates=467,166,63,58
 

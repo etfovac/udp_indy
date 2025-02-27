@@ -35,7 +35,7 @@ __published:	// IDE-managed Components
 	TGroupBox *RepeatProperties;
 	TGroupBox *BufferProperties;
 	TLabel *Label1;
-	TLabel *Label2;
+	TLabel *ms;
 	TGroupBox *Controls;
 	void __fastcall ClientTimer_Timeout(TObject *Sender);
 	void __fastcall EnableClick(TObject *Sender);

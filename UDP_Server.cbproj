@@ -129,13 +129,13 @@
             <BuildOrder>1</BuildOrder>
             <PCH>true</PCH>
         </PCHCompile>
-        <CppCompile Include="Unit2.cpp">
+        <CppCompile Include="UDP_Server_UI.cpp">
             <Form>Server</Form>
             <FormType>dfm</FormType>
-            <DependentOn>Unit2.h</DependentOn>
+            <DependentOn>UDP_Server_UI.h</DependentOn>
             <BuildOrder>2</BuildOrder>
         </CppCompile>
-        <FormResources Include="Unit2.dfm"/>
+        <FormResources Include="UDP_Server_UI.dfm"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
